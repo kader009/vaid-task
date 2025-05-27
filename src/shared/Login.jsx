@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -40,7 +40,9 @@ const LoginPage = () => {
 
           <form className="space-y-5" onSubmit={handleLogin}>
             <div>
-              <label className="block mb-1 font-semibold text-white">Username</label>
+              <label className="block mb-1 font-semibold text-white">
+                Username
+              </label>
               <input
                 type="text"
                 className="w-full px-4 py-2 bg-white/20 border border-white/30 text-white placeholder-white/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
@@ -52,7 +54,9 @@ const LoginPage = () => {
             </div>
 
             <div>
-              <label className="block mb-1 font-semibold text-white">Password</label>
+              <label className="block mb-1 font-semibold text-white">
+                Password
+              </label>
               <input
                 type="password"
                 className="w-full px-4 py-2 bg-white/20 border border-white/30 text-white placeholder-white/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
@@ -73,7 +77,10 @@ const LoginPage = () => {
 
           <p className="text-center mt-4 text-white">
             New here?{' '}
-            <Link href="/register" className="text-blue-300 underline hover:text-white transition">
+            <Link
+              href="/register"
+              className="text-blue-300 underline hover:text-white transition"
+            >
               Register now
             </Link>
           </p>

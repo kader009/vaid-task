@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 Ecommerce Admin Interface
 
-## Getting Started
+A basic eCommerce admin panel built using **Next.js**, **Tailwind CSS**, and **JavaScript**, featuring authentication and CRUD operations for product categories and products.
 
-First, run the development server:
+> ⚠️ **Note: First Time User Instructions**
+
+- When you first open the site, it will redirect you to the **Login Page**.
+- To create a new account, click on the **Register** link/button.
+- Fill out the registration form with all required information (like name, email, password, etc.).
+- After successful registration, you will be redirected back to the **Login Page**.
+- Now, use your registered **email and password** to log in.
+- Upon successful login, you will be taken directly to the **Dashboard**.
+
+
+## Features
+
+### 1. Authentication
+
+- Login and Register using the provided API
+- Auth token is stored in `localStorage` for session management
+
+### 2. Product Category Management (CRUD)
+
+- List all product categories
+- Create new category
+- Edit/update existing category
+- Delete category
+
+### 3. Product Management (CRUD)
+
+- List all products
+- Create new product
+- Edit/update existing product
+- Delete product
+
+### 4. UI & UX
+
+- Clean and user-friendly interface
+- Responsive layout
+- Form validation with error messages
+- Toast notifications for actions (success, error)
+
+## 5. Tech Stack
+
+- **Framework**: Next.js
+- **Language**: JavaScript
+- **Styling**: Tailwind CSS
+- **Authentication**: Token-based via API
+
+## 6. Project Setup Guide
+
+Follow the steps below to run this project locally:
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/kader009/vaid-task.git
+```
+
+```bash
+npm install
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
