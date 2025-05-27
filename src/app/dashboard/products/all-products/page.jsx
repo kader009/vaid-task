@@ -31,6 +31,7 @@ const ProductList = () => {
       const res = await axios.get('https://ecom.laralink.com/api/products', {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log(res);
       if (res.data.success) {
         setProducts(res.data.data.products);
       }
@@ -146,7 +147,7 @@ const ProductList = () => {
                 className="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
               >
                 <td className="px-6 py-4">{product.name}</td>
-                <td className="px-6 py-4">${product.price}</td>
+                <td className="px-6 py-4">${parseFloat(product.price)}</td>
                 <td className="px-6 py-4">{product.sku}</td>
                 <td className="px-6 py-4 flex items-center justify-center gap-2">
                   <button
