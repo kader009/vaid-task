@@ -55,7 +55,7 @@ export default function CreateCategoryForm() {
         className="w-full max-w-md space-y-4 p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg"
       >
         <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-          Create New Category
+          Create Category
         </h1>
 
         <input
@@ -70,6 +70,7 @@ export default function CreateCategoryForm() {
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          required
           placeholder="Description (optional)"
           className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
         />

@@ -10,11 +10,20 @@ const ProductList = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [form, setForm] = useState({ name: '', price: '', sku: '' });
 
-  const token = localStorage.getItem('token');
+  const [token, setToken] = useState('');
 
   useEffect(() => {
-    fetchProducts();
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
   }, []);
+
+  useEffect(() => {
+    if (token) {
+      fetchProducts();
+    }
+  }, [token]);
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -34,7 +43,9 @@ const ProductList = () => {
   };
 
   const handleDelete = async (id) => {
-    const confirmDelete = window.confirm('Are you sure to delete this product?');
+    const confirmDelete = window.confirm(
+      'Are you sure to delete this product?'
+    );
     if (!confirmDelete) return;
 
     try {
@@ -113,96 +124,99 @@ const ProductList = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-  <h1 className="text-2xl font-bold mb-6 text-center dark:text-white">All Product List</h1>
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold mb-6 text-center dark:text-white">
+        All Product List
+      </h1>
 
-  <div className="overflow-x-auto shadow-lg rounded-xl dark:bg-gray-800">
-    <table className="min-w-full text-sm text-left dark:text-gray-200">
-      <thead className="bg-blue-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 uppercase tracking-wider">
-        <tr>
-          <th className="px-6 py-4">Product Name</th>
-          <th className="px-6 py-4">Price</th>
-          <th className="px-6 py-4">SKU</th>
-          <th className="px-6 py-4 text-center">Actions</th>
-        </tr>
-      </thead>
-      <tbody className="bg-white dark:bg-gray-900">
-        {products.map((product) => (
-          <tr
-            key={product.id || product._id}
-            className="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
-          >
-            <td className="px-6 py-4">{product.name}</td>
-            <td className="px-6 py-4">${product.price}</td>
-            <td className="px-6 py-4">{product.sku}</td>
-            <td className="px-6 py-4 flex items-center justify-center gap-2">
-              <button
-                onClick={() => handleEdit(product)}
-                className="bg-yellow-400 hover:bg-yellow-500 text-white p-2 rounded-md transition"
+      <div className="overflow-x-auto shadow-lg rounded-xl dark:bg-gray-800">
+        <table className="min-w-full text-sm text-left dark:text-gray-200">
+          <thead className="bg-blue-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 uppercase tracking-wider">
+            <tr>
+              <th className="px-6 py-4">Product Name</th>
+              <th className="px-6 py-4">Price</th>
+              <th className="px-6 py-4">SKU</th>
+              <th className="px-6 py-4 text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white dark:bg-gray-900">
+            {products.map((product) => (
+              <tr
+                key={product.id || product._id}
+                className="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
               >
-                <FaEdit />
-              </button>
-              <button
-                onClick={() => handleDelete(product.id)}
-                className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md transition"
-              >
-                <FaTrash />
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-
-  {/* Edit Modal */}
-  {editingProduct && (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-[90%] sm:w-[400px]">
-        <h2 className="text-xl font-bold mb-4 dark:text-white">Edit Product</h2>
-
-        <input
-          name="name"
-          value={form.name}
-          onChange={handleFormChange}
-          placeholder="Product Name"
-          className="w-full mb-3 p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-black dark:text-white"
-        />
-        <input
-          name="price"
-          value={form.price}
-          onChange={handleFormChange}
-          placeholder="Price"
-          type="number"
-          className="w-full mb-3 p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-black dark:text-white"
-        />
-        <input
-          name="sku"
-          value={form.sku}
-          onChange={handleFormChange}
-          placeholder="SKU"
-          className="w-full mb-4 p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-black dark:text-white"
-        />
-
-        <div className="flex justify-end gap-3">
-          <button
-            onClick={() => setEditingProduct(null)}
-            className="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 px-4 py-2 rounded text-black dark:text-white"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleSave}
-            className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white"
-          >
-            Save
-          </button>
-        </div>
+                <td className="px-6 py-4">{product.name}</td>
+                <td className="px-6 py-4">${product.price}</td>
+                <td className="px-6 py-4">{product.sku}</td>
+                <td className="px-6 py-4 flex items-center justify-center gap-2">
+                  <button
+                    onClick={() => handleEdit(product)}
+                    className="bg-yellow-400 hover:bg-yellow-500 text-white p-2 rounded-md transition"
+                  >
+                    <FaEdit />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(product.id)}
+                    className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md transition"
+                  >
+                    <FaTrash />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </div>
-  )}
-</div>
 
+      {/* Edit Modal */}
+      {editingProduct && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-[90%] sm:w-[400px]">
+            <h2 className="text-xl font-bold mb-4 dark:text-white">
+              Edit Product
+            </h2>
+
+            <input
+              name="name"
+              value={form.name}
+              onChange={handleFormChange}
+              placeholder="Product Name"
+              className="w-full mb-3 p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-black dark:text-white"
+            />
+            <input
+              name="price"
+              value={form.price}
+              onChange={handleFormChange}
+              placeholder="Price"
+              type="number"
+              className="w-full mb-3 p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-black dark:text-white"
+            />
+            <input
+              name="sku"
+              value={form.sku}
+              onChange={handleFormChange}
+              placeholder="SKU"
+              className="w-full mb-4 p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-black dark:text-white"
+            />
+
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setEditingProduct(null)}
+                className="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 px-4 py-2 rounded text-black dark:text-white"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSave}
+                className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
