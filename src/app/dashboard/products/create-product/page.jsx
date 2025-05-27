@@ -98,8 +98,8 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white shadow-md rounded-md">
-      <h2 className="text-2xl font-semibold mb-4">Create Product</h2>
+    <div className="max-w-xl mx-auto p-6 bg-white dark:bg-gray-900 text-black dark:text-white shadow-md rounded-md m-6">
+      <h1 className="text-2xl font-semibold mb-4">Create Product</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block font-medium">Name *</label>
@@ -121,6 +121,7 @@ const CreateProduct = () => {
             name="description"
             value={formData.description}
             onChange={handleChange}
+            required
             className="w-full border p-2 rounded"
           />
         </div>
@@ -147,6 +148,7 @@ const CreateProduct = () => {
             name="sku"
             value={formData.sku}
             onChange={handleChange}
+            required
             className="w-full border p-2 rounded"
           />
         </div>
@@ -159,6 +161,7 @@ const CreateProduct = () => {
             min="0"
             value={formData.stock}
             onChange={handleChange}
+            required
             className="w-full border p-2 rounded"
           />
         </div>
@@ -179,6 +182,7 @@ const CreateProduct = () => {
           <input
             type="checkbox"
             name="status"
+            required
             checked={formData.status}
             onChange={handleChange}
             className="mr-2"
