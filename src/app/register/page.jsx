@@ -44,10 +44,10 @@ const RegisterPage = () => {
         formData
       );
       console.log(res);
-      const token = res?.data?.data.access_token
+      const token = res?.data?.data.access_token;
 
-      if(token){
-        localStorage.setItem('token', token)
+      if (token) {
+        localStorage.setItem('token', token);
       }
       toast.success('Registration successful!');
       router.push('/');
@@ -63,9 +63,11 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-green-500 to-blue-600 px-4">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-600 to-indigo-700 px-4">
       <div className="bg-white/10 backdrop-blur-md border border-white/30 p-8 rounded-xl shadow-lg w-full max-w-md text-white">
-        <h2 className="text-3xl font-bold text-center text-white mb-6">Register</h2>
+        <h1 className="text-3xl font-bold text-center text-white mb-6">
+          Register
+        </h1>
         <form className="space-y-5" onSubmit={handleSubmit}>
           {/* Name */}
           <div>
@@ -79,7 +81,9 @@ const RegisterPage = () => {
               onChange={handleChange}
               required
             />
-            {errors.name && <p className="text-red-300 text-sm mt-1">{errors.name}</p>}
+            {errors.name && (
+              <p className="text-red-300 text-sm mt-1">{errors.name}</p>
+            )}
           </div>
 
           {/* Email */}
@@ -94,7 +98,9 @@ const RegisterPage = () => {
               onChange={handleChange}
               required
             />
-            {errors.email && <p className="text-red-300 text-sm mt-1">{errors.email}</p>}
+            {errors.email && (
+              <p className="text-red-300 text-sm mt-1">{errors.email}</p>
+            )}
           </div>
 
           {/* Password */}
@@ -109,7 +115,9 @@ const RegisterPage = () => {
               onChange={handleChange}
               required
             />
-            {errors.password && <p className="text-red-300 text-sm mt-1">{errors.password}</p>}
+            {errors.password && (
+              <p className="text-red-300 text-sm mt-1">{errors.password}</p>
+            )}
           </div>
 
           {/* Confirm Password */}
@@ -125,7 +133,9 @@ const RegisterPage = () => {
               required
             />
             {errors.password_confirmation && (
-              <p className="text-red-300 text-sm mt-1">{errors.password_confirmation}</p>
+              <p className="text-red-300 text-sm mt-1">
+                {errors.password_confirmation}
+              </p>
             )}
           </div>
 
