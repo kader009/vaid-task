@@ -9,7 +9,7 @@ import Link from 'next/link';
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter(); // ✅ useRouter()
+  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,7 +22,7 @@ const LoginPage = () => {
       const { Token, RefreshToken } = res.data;
       localStorage.setItem('accessToken', Token);
       localStorage.setItem('refreshToken', RefreshToken);
-      router.push('/dashboard'); // ✅ router.push
+      router.push('/dashboard');
       toast.success(`Welcome to Dashboard`);
     } catch (err) {
       toast.error('Invalid credentials');
@@ -34,9 +34,9 @@ const LoginPage = () => {
     <div>
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-600 to-indigo-700 px-4">
         <div className="bg-white/10 backdrop-blur-md border border-white/30 p-8 rounded-xl shadow-lg w-full max-w-md text-white">
-          <h2 className="text-3xl font-bold text-center text-white mb-6">
-            Login to Dashboard
-          </h2>
+          <h1 className="text-3xl font-bold text-center text-white mb-6">
+            User Login
+          </h1>
 
           <form className="space-y-5" onSubmit={handleLogin}>
             <div>
