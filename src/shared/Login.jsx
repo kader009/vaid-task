@@ -71,9 +71,9 @@ const LoginPage = () => {
             </button>
           </form>
 
-          <p className="text-center mt-4 text-white/80">
+          <p className="text-center mt-4 text-white">
             New here?{' '}
-            <Link href="/register" className="text-blue-300 underline hover:text-white transition">
+            <Link href="/register" className="text-blue-500 underline hover:text-white transition">
               Register now
             </Link>
           </p>
