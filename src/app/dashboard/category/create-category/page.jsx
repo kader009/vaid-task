@@ -12,7 +12,7 @@ export default function CreateCategoryForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const token = localStorage.getItem('token');
       const res = await axios.post(
@@ -31,7 +31,7 @@ export default function CreateCategoryForm() {
       );
 
       console.log(res);
-  
+
       toast.success('Category created successfully!');
       setName('');
       setDescription('');
@@ -39,7 +39,9 @@ export default function CreateCategoryForm() {
       setMessage('');
     } catch (err) {
       if (err.response) {
-        toast.error(`Error: ${err.response.data.message || 'Something went wrong'}`);
+        toast.error(
+          `Error: ${err.response.data.message || 'Something went wrong'}`
+        );
       } else {
         toast.error('Server error. Please try again later.');
       }
@@ -47,42 +49,53 @@ export default function CreateCategoryForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4 p-4 bg-white shadow rounded ">
-      <h1 className="text-xl font-bold">Create New Category</h1>
-
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Category name"
-        required
-        className="w-full p-2 border border-gray-300 rounded"
-      />
-
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Description (optional)"
-        className="w-full p-2 border border-gray-300 rounded"
-      />
-
-      <label className="flex items-center space-x-2">
-        <input
-          type="checkbox"
-          checked={status}
-          onChange={(e) => setStatus(e.target.checked)}
-        />
-        <span>Active</span>
-      </label>
-
-      <button
-        type="submit"
-        className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded"
+    <div className="h-screen flex items-center justify-center  px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md space-y-4 p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg"
       >
-        Create Category
-      </button>
+        <h1 className="text-xl font-bold text-gray-900 dark:text-white">
+          Create New Category
+        </h1>
 
-      {message && <p className="text-sm mt-2">{message}</p>}
-    </form>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Category name"
+          required
+          className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+        />
+
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Description (optional)"
+          className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+        />
+
+        <label className="flex items-center space-x-2 text-gray-800 dark:text-gray-200">
+          <input
+            type="checkbox"
+            checked={status}
+            onChange={(e) => setStatus(e.target.checked)}
+          />
+          <span>Active</span>
+        </label>
+
+        <button
+          type="submit"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded w-full transition"
+        >
+          Create Category
+        </button>
+
+        {message && (
+          <p className="text-sm mt-2 text-center text-gray-700 dark:text-gray-300">
+            {message}
+          </p>
+        )}
+      </form>
+    </div>
   );
 }

@@ -114,7 +114,7 @@ const ProductList = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-  <h1 className="text-3xl font-bold mb-6 text-center dark:text-white">All Product List</h1>
+  <h1 className="text-2xl font-bold mb-6 text-center dark:text-white">All Product List</h1>
 
   <div className="overflow-x-auto shadow-lg rounded-xl dark:bg-gray-800">
     <table className="min-w-full text-sm text-left dark:text-gray-200">
