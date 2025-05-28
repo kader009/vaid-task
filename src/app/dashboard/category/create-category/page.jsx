@@ -8,10 +8,33 @@ export default function CreateCategoryForm() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState(true);
-  const [message, setMessage] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!name.trim()) {
+      newErrors.name = 'Category name is required.';
+    } else if (name.trim().length < 3) {
+      newErrors.name = 'Category name must be at least 3 characters.';
+    }
+
+    if (!description.trim()) {
+      newErrors.description = 'Description is required.';
+    } else if (description.trim().length < 10) {
+      newErrors.description = 'Description must be at least 10 characters.';
+    }
+
+    setErrors(newErrors);
+
+    // Return true if no errors
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validate()) return;
 
     try {
       const token = localStorage.getItem('token');
@@ -36,7 +59,7 @@ export default function CreateCategoryForm() {
       setName('');
       setDescription('');
       setStatus(true);
-      setMessage('');
+      setErrors({});
     } catch (err) {
       if (err.response) {
         toast.error(
@@ -49,7 +72,7 @@ export default function CreateCategoryForm() {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center  px-4">
+    <div className="h-screen flex items-center justify-center px-4">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-md space-y-4 p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg"
@@ -61,19 +84,29 @@ export default function CreateCategoryForm() {
         <input
           type="text"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => {
+            setName(e.target.value);
+            setErrors((prev) => ({ ...prev, name: '' }));
+          }}
           placeholder="Category name"
-          required
           className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
         />
+        {errors.name && (
+          <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+        )}
 
         <textarea
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-          placeholder="Description (optional)"
+          onChange={(e) => {
+            setDescription(e.target.value);
+            setErrors((prev) => ({ ...prev, description: '' }));
+          }}
+          placeholder="Description"
           className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
         />
+        {errors.description && (
+          <p className="text-red-500 text-sm mt-1">{errors.description}</p>
+        )}
 
         <label className="flex items-center space-x-2 text-gray-800 dark:text-gray-200">
           <input
@@ -90,12 +123,6 @@ export default function CreateCategoryForm() {
         >
           Create Category
         </button>
-
-        {message && (
-          <p className="text-sm mt-2 text-center text-gray-700 dark:text-gray-300">
-            {message}
-          </p>
-        )}
       </form>
     </div>
   );
