@@ -1,4 +1,5 @@
 'use client';
+import { useAuth } from '@/hooks/useAuth';
 import {
   BarChart,
   Bar,
@@ -29,6 +30,7 @@ const usersData = [
 const COLORS = ['#4B5563', '#3B82F6', '#9CA3AF'];
 
 export default function DashboardHomePage() {
+  useAuth()
   return (
     <main className="min-h-screen px-4 py-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
