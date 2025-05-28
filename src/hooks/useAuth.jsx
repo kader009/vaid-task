@@ -9,7 +9,7 @@ export const useAuth = () => {
     const token = localStorage.getItem('token');
 
     if (!token) {
-      router.push('/login'); // Not authenticated
+      router.push('/'); // Not authenticated
     }
   }, []);
 };
