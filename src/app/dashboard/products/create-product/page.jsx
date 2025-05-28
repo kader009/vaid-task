@@ -22,6 +22,7 @@ const CreateProduct = () => {
 
     if (!formData.name.trim()) newErrors.name = 'Name is required.';
     if (!formData.price) newErrors.price = 'Price is required.';
+    if (!formData.sku) newErrors.sku = 'Sku is required.';
     else if (isNaN(formData.price) || Number(formData.price) <= 0)
       newErrors.price = 'Price must be a valid positive number.';
 
@@ -61,17 +62,22 @@ const CreateProduct = () => {
     payload.append('stock', formData.stock);
     if (formData.image) payload.append('image', formData.image);
     payload.append('status', formData.status ? '1' : '0');
-    if (formData.category_id) payload.append('category_id', formData.category_id);
+    if (formData.category_id)
+      payload.append('category_id', formData.category_id);
 
     const token = localStorage.getItem('token');
 
     try {
-      const res = await axios.post('https://ecom.laralink.com/api/products', payload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const res = await axios.post(
+        'https://ecom.laralink.com/api/products',
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
 
       console.log(res);
 
@@ -107,12 +113,14 @@ const CreateProduct = () => {
             type="text"
             name="name"
             maxLength={255}
-            required
+            placeholder="product name"
             value={formData.name}
             onChange={handleChange}
             className="w-full border p-2 rounded"
           />
-          {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+          {errors.name && (
+            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+          )}
         </div>
 
         <div>
@@ -121,7 +129,7 @@ const CreateProduct = () => {
             name="description"
             value={formData.description}
             onChange={handleChange}
-            required
+            placeholder="product description"
             className="w-full border p-2 rounded"
           />
         </div>
@@ -131,14 +139,16 @@ const CreateProduct = () => {
           <input
             type="number"
             name="price"
-            required
             min="0"
             step="0.01"
+            placeholder="price"
             value={formData.price}
             onChange={handleChange}
             className="w-full border p-2 rounded"
           />
-          {errors.price && <p className="text-red-500 text-sm mt-1">{errors.price}</p>}
+          {errors.price && (
+            <p className="text-red-500 text-sm mt-1">{errors.price}</p>
+          )}
         </div>
 
         <div>
@@ -148,9 +158,12 @@ const CreateProduct = () => {
             name="sku"
             value={formData.sku}
             onChange={handleChange}
-            required
+            placeholder="sku code"
             className="w-full border p-2 rounded"
           />
+          {errors.sku && (
+            <p className="text-red-500 text-sm mt-1">{errors.sku}</p>
+          )}
         </div>
 
         <div>
@@ -161,7 +174,7 @@ const CreateProduct = () => {
             min="0"
             value={formData.stock}
             onChange={handleChange}
-            required
+            placeholder="stock"
             className="w-full border p-2 rounded"
           />
         </div>
@@ -175,14 +188,15 @@ const CreateProduct = () => {
             onChange={handleChange}
             className="w-full"
           />
-          {errors.image && <p className="text-red-500 text-sm mt-1">{errors.image}</p>}
+          {errors.image && (
+            <p className="text-red-500 text-sm mt-1">{errors.image}</p>
+          )}
         </div>
 
         <div className="flex items-center">
           <input
             type="checkbox"
             name="status"
-            required
             checked={formData.status}
             onChange={handleChange}
             className="mr-2"
@@ -197,9 +211,12 @@ const CreateProduct = () => {
             name="category_id"
             value={formData.category_id}
             onChange={handleChange}
+            placeholder="category id (optional)"
             className="w-full border p-2 rounded"
           />
-          {errors.category_id && <p className="text-red-500 text-sm mt-1">{errors.category_id}</p>}
+          {errors.category_id && (
+            <p className="text-red-500 text-sm mt-1">{errors.category_id}</p>
+          )}
         </div>
 
         <button
