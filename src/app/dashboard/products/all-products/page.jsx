@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import Loader from '@/components/Loader';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -109,11 +110,7 @@ const ProductList = () => {
   };
 
   if (loading) {
-    return (
-      <div className="text-center py-10 font-semibold text-lg animate-pulse">
-        Loading Products...
-      </div>
-    );
+    return <Loader />;
   }
 
   if (!products || products.length === 0) {
@@ -132,7 +129,7 @@ const ProductList = () => {
 
       <div className="overflow-x-auto shadow-lg rounded-xl dark:bg-gray-800">
         <table className="min-w-full text-sm text-left dark:text-gray-200">
-          <thead className="bg-blue-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 uppercase tracking-wider">
+          <thead className="bg-blue-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 capitalize tracking-wider">
             <tr>
               <th className="px-6 py-4">Product Name</th>
               <th className="px-6 py-4">Price</th>

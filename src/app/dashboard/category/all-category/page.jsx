@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import Loader from '@/components/Loader';
 
 export default function CategoryCard() {
   const [categories, setCategories] = useState([]);
@@ -116,7 +117,7 @@ export default function CategoryCard() {
     }
   };
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
+  if (loading) return <Loader />;
   if (categories.length === 0)
     return <p className="text-center mt-10">No categories found.</p>;
 
