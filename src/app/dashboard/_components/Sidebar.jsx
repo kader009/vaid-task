@@ -13,13 +13,14 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const linkClasses = (path) =>
-    `block px-4 py-2 rounded hover:bg-indigo-600 transition ${
-      currentPath === path ? 'bg-indigo-600 text-white' : 'text-gray-300'
+    `block px-4 py-2 rounded hover:bg-[#3B82F6] transition ${
+      currentPath === path ? 'bg-[#3B82F6] text-white' : 'text-white'
     }`;
 
   // Auto-expand based on current path
   useEffect(() => {
-    if (currentPath.startsWith('/dashboard/categories')) setIsCategoryOpen(true);
+    if (currentPath.startsWith('/dashboard/categories'))
+      setIsCategoryOpen(true);
     if (currentPath.startsWith('/dashboard/products')) setIsProductOpen(true);
   }, [currentPath]);
 
@@ -56,7 +57,7 @@ const Sidebar = () => {
           {/* Categories */}
           <div>
             <button
-              className="w-full text-left px-4 py-2 rounded hover:bg-indigo-600 transition text-gray-300"
+              className="w-full text-left px-4 py-2 rounded hover:bg-[#3B82F6] transition text-white"
               onClick={() => setIsCategoryOpen(!isCategoryOpen)}
             >
               Categories
@@ -84,7 +85,7 @@ const Sidebar = () => {
           {/* Products */}
           <div>
             <button
-              className="w-full text-left px-4 py-2 rounded hover:bg-indigo-600 transition text-gray-300"
+              className="w-full text-left px-4 py-2 rounded hover:bg-[#3B82F6] transition text-white"
               onClick={() => setIsProductOpen(!isProductOpen)}
             >
               Products

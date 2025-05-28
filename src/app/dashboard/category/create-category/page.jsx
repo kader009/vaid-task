@@ -119,7 +119,7 @@ export default function CreateCategoryForm() {
 
         <button
           type="submit"
-          className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded w-full transition"
+          className="bg-[#3B82F6] hover:bg-[#3b83f6c2] text-white px-4 py-2 rounded w-full transition"
         >
           Create Category
         </button>

@@ -49,6 +49,7 @@ const RegisterPage = () => {
       if (token) {
         localStorage.setItem('token', token);
       }
+
       toast.success('Registration successful!');
       router.push('/');
     } catch (err) {
@@ -69,7 +70,6 @@ const RegisterPage = () => {
           Register
         </h1>
         <form className="space-y-5" onSubmit={handleSubmit}>
-          {/* Name */}
           <div>
             <label className="block mb-1 font-semibold">Name</label>
             <input
@@ -79,14 +79,12 @@ const RegisterPage = () => {
               placeholder="Enter your name"
               value={formData.name}
               onChange={handleChange}
-              required
             />
             {errors.name && (
               <p className="text-red-300 text-sm mt-1">{errors.name}</p>
             )}
           </div>
 
-          {/* Email */}
           <div>
             <label className="block mb-1 font-semibold">Email</label>
             <input
@@ -96,14 +94,12 @@ const RegisterPage = () => {
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
-              required
             />
             {errors.email && (
               <p className="text-red-300 text-sm mt-1">{errors.email}</p>
             )}
           </div>
 
-          {/* Password */}
           <div>
             <label className="block mb-1 font-semibold">Password</label>
             <input
@@ -113,14 +109,12 @@ const RegisterPage = () => {
               placeholder="Enter your password"
               value={formData.password}
               onChange={handleChange}
-              required
             />
             {errors.password && (
               <p className="text-red-300 text-sm mt-1">{errors.password}</p>
             )}
           </div>
 
-          {/* Confirm Password */}
           <div>
             <label className="block mb-1 font-semibold">Confirm Password</label>
             <input
@@ -130,7 +124,6 @@ const RegisterPage = () => {
               placeholder="Confirm your password"
               value={formData.password_confirmation}
               onChange={handleChange}
-              required
             />
             {errors.password_confirmation && (
               <p className="text-red-300 text-sm mt-1">

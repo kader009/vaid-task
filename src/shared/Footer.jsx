@@ -1,42 +1,61 @@
-const Footer = () => {  
+import { Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import Link from 'next/link';
+
+const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-8">
-      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-        {/* Left side - Logo & About */}
-        <div className="mb-6 md:mb-0">
-          <h2 className="text-2xl font-bold text-white">Ecommerce</h2>
-          <p className="text-gray-400 max-w-sm mt-2">
+    <footer className="bg-gray-900 text-gray-300 py-10">
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Left: Logo & About */}
+        <div>
+          <h1 className="text-2xl font-bold text-white">Ecommerce</h1>
+          <p className="text-gray-400 mt-3 leading-relaxed">
             Bringing you the best products and services with top-notch support.
           </p>
+          {/* Social Icons */}
+          <div className="flex space-x-4 mt-4">
+            <Link href="#" className="hover:text-white">
+              <Facebook size={20} />
+            </Link>
+            <Link href="#" className="hover:text-white">
+              <Twitter size={20} />
+            </Link>
+            <Link href="#" className="hover:text-white">
+              <Instagram size={20} />
+            </Link>
+          </div>
         </div>
 
-        {/* Center - Useful Links */}
-        <div className="flex space-x-6 mb-6 md:mb-0">
-          <a href="/" className="hover:text-white">
-            Home
-          </a>
-          <a href="" className="hover:text-white">
-            About
-          </a>
-          <a href="" className="hover:text-white">
-            Services
-          </a>
-          <a href="" className="hover:text-white">
-            Contact
-          </a>
+        {/* Center: Useful Links */}
+        <div>
+          <h3 className="text-lg font-semibold text-white mb-4">Useful Links</h3>
+          <ul className="space-y-2">
+            <li><Link href="/" className="hover:text-white">Home</Link></li>
+            <li><Link href="" className="hover:text-white">About</Link></li>
+            <li><Link href="" className="hover:text-white">Services</Link></li>
+            <li><Link href="" className="hover:text-white">Contact</Link></li>
+          </ul>
         </div>
 
-        {/* Right side - Contact Info */}
-        <div className="text-gray-400 text-center md:text-right">
-          <p>Email: support@ecommerce.com</p>
-          <p>Phone: +880 1234 567890</p>
-          <p>Address: Dhaka, Bangladesh</p>
+        {/* Right: Contact Info */}
+        <div>
+          <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li className="flex items-center gap-2">
+              <Mail size={16} /> support@ecommerce.com
+            </li>
+            <li className="flex items-center gap-2">
+              <Phone size={16} /> +880 1234 567890
+            </li>
+            <li className="flex items-center gap-2">
+              <MapPin size={16} /> Dhaka, Bangladesh
+            </li>
+          </ul>
         </div>
       </div>
 
-      {/* Bottom copyright */}
-      <div className="mt-8 border-t border-gray-700 pt-4 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} Ecommerce. All rights reserved. 
+      {/* Bottom Section */}
+      <div className="mt-10 border-t border-gray-700 pt-4 text-center text-sm text-gray-500">
+        &copy; {new Date().getFullYear()} Ecommerce. All rights reserved.
       </div>
     </footer>
   );
