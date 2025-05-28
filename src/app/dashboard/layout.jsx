@@ -11,7 +11,7 @@ const Dashbooardlayout = ({ children }) => {
       <div className="flex w-full min-h-screen">
         <Sidebar />
         <Toaster />
-        <main className="flex-1 w-full">{children}</main>
+        <main className="flex-1 w-full h-screen">{children}</main>
       </div>
       <Footer />
     </>

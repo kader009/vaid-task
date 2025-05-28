@@ -1,7 +1,7 @@
 'use client';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const CreateProduct = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +16,7 @@ const CreateProduct = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const imageInputRef = useRef(null);
 
   const validate = () => {
     const newErrors = {};
@@ -93,6 +94,11 @@ const CreateProduct = () => {
           status: true,
           category_id: '',
         });
+
+        if (imageInputRef.current) {
+          imageInputRef.current.value = null; // Reset file input
+        }
+
         setErrors({});
       } else {
         toast.error(res.response?.data?.message || 'Failed to create product.');
@@ -152,7 +158,7 @@ const CreateProduct = () => {
         </div>
 
         <div>
-          <label className="block font-medium">SKU</label>
+          <label className="block font-medium">SKU *</label>
           <input
             type="text"
             name="sku"
@@ -186,6 +192,7 @@ const CreateProduct = () => {
             accept="image/*"
             name="image"
             onChange={handleChange}
+            ref={imageInputRef}
             className="w-full"
           />
           {errors.image && (

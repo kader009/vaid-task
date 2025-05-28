@@ -1,4 +1,11 @@
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+} from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -27,12 +34,30 @@ const Footer = () => {
 
         {/* Center: Useful Links */}
         <div>
-          <h3 className="text-lg font-semibold text-white mb-4">Useful Links</h3>
+          <h3 className="text-lg font-semibold text-white mb-4">
+            Useful Links
+          </h3>
           <ul className="space-y-2">
-            <li><Link href="/" className="hover:text-white">Home</Link></li>
-            <li><Link href="" className="hover:text-white">About</Link></li>
-            <li><Link href="" className="hover:text-white">Services</Link></li>
-            <li><Link href="" className="hover:text-white">Contact</Link></li>
+            <li>
+              <Link href="/" className="hover:text-white">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link href="" className="hover:text-white">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="" className="hover:text-white">
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link href="" className="hover:text-white">
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
 
