@@ -41,12 +41,12 @@ const LoginPage = () => {
           <form className="space-y-5" onSubmit={handleLogin}>
             <div>
               <label className="block mb-1 font-semibold text-white">
-                Username
+                Useremail
               </label>
               <input
                 type="text"
                 className="w-full px-4 py-2 bg-white/20 border border-white/30 text-white placeholder-white/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
-                placeholder="Enter your username"
+                placeholder="Enter your useremail"
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
