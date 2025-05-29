@@ -37,9 +37,9 @@ export default function DashboardHomePage() {
         {/* Info Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-lg font-medium text-gray-700 mb-2">
+            <h1 className="text-lg font-medium text-gray-700 mb-2">
               Total Users
-            </h2>
+            </h1>
             <p className="text-3xl font-bold text-gray-800">1,234</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm">
@@ -49,7 +49,7 @@ export default function DashboardHomePage() {
             <p className="text-3xl font-bold text-gray-800">245</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-lg font-medium text-gray-700 mb-2">Earnings</h2>
+            <h3 className="text-lg font-medium text-gray-700 mb-2">Earnings</h3>
             <p className="text-3xl font-bold text-gray-800">$12,400</p>
           </div>
         </div>
@@ -58,9 +58,9 @@ export default function DashboardHomePage() {
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Bar Chart - Monthly Orders */}
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+            <h1 className="text-xl font-semibold text-gray-800 mb-4">
               Monthly Orders
-            </h3>
+            </h1>
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={ordersData}>
                 <XAxis dataKey="month" />
@@ -73,9 +73,9 @@ export default function DashboardHomePage() {
 
           {/* Pie Chart - User Types */}
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+            <h1 className="text-xl font-semibold text-gray-800 mb-4">
               User Types
-            </h3>
+            </h1>
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
@@ -101,9 +101,9 @@ export default function DashboardHomePage() {
 
         {/* System Status */}
         <div className="mt-10 bg-white p-6 rounded-lg shadow-sm">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">
+          <h1 className="text-xl font-semibold text-gray-800 mb-4">
             System Status
-          </h3>
+          </h1>
           <ul className="space-y-2 text-gray-700">
             <li className="flex items-center justify-between">
               <span>Database</span>

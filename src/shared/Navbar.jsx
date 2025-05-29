@@ -84,7 +84,7 @@ const Navbar = () => {
           <Link
             href="/dashboard"
             onClick={() => setIsOpen(false)}
-            className="block py-2 bg-white text-indigo-700 rounded text-center font-semibold"
+            className="block py-2 bg-white text-[#3B82F6] rounded text-center font-semibold"
           >
             Dashboard
           </Link>
