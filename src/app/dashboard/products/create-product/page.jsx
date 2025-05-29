@@ -1,7 +1,7 @@
 'use client';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const CreateProduct = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +17,43 @@ const CreateProduct = () => {
 
   const [errors, setErrors] = useState({});
   const imageInputRef = useRef(null);
+  const [categories, setCategories] = useState([]);
+
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      fetchCategories();
+    }
+  }, [token]);
+
+  const fetchCategories = async () => {
+    try {
+      const res = await axios.get('https://ecom.laralink.com/api/categories', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.data.success) {
+        setCategories(res.data.data.categories || []);
+      } else {
+        toast.error('Failed to load categories');
+      }
+    } catch (error) {
+      toast.error('Something went wrong');
+      console.error(error);
+    } 
+  };
+
+  console.log(categories);
 
   const validate = () => {
     const newErrors = {};
@@ -28,7 +65,7 @@ const CreateProduct = () => {
       newErrors.price = 'Price must be a valid positive number.';
 
     if (!formData.image) newErrors.image = 'Image is required.';
-    if (formData.category_id && isNaN(formData.category_id)) {
+    if (!formData.category_id && isNaN(formData.category_id)) {
       newErrors.category_id = 'Category ID must be a number.';
     }
 
@@ -212,15 +249,20 @@ const CreateProduct = () => {
         </div>
 
         <div>
-          <label className="block font-medium">Category ID</label>
-          <input
-            type="number"
+          <label className="block font-medium">Category ID *</label>
+          <select
             name="category_id"
             value={formData.category_id}
             onChange={handleChange}
-            placeholder="category id (optional)"
             className="w-full border p-2 rounded"
-          />
+          >
+            <option value="">Category ID</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.id}
+              </option>
+            ))}
+          </select>
           {errors.category_id && (
             <p className="text-red-500 text-sm mt-1">{errors.category_id}</p>
           )}

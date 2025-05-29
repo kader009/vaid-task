@@ -136,7 +136,7 @@ export default function CategoryCard() {
             className="p-6 bg-white dark:bg-gray-900 dark:text-white rounded shadow hover:shadow-lg transition flex flex-col justify-between"
           >
             <div>
-              <h3 className="text-lg font-semibold mb-2">{cat.name}</h3>
+              <h1 className="text-lg font-semibold mb-2">{cat.name}</h1>
               <p className="text-gray-600 dark:text-gray-400 mb-3">
                 {cat.description || 'No description'}
               </p>
