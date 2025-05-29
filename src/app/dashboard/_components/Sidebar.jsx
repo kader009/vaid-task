@@ -12,15 +12,18 @@ const Sidebar = () => {
   const [isProductOpen, setIsProductOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const linkClasses = (path) =>
+  const isActive = (path, exact = false) => {
+    return exact ? currentPath === path : currentPath.startsWith(path);
+  };
+
+  const linkClasses = (path, exact = false) =>
     `block px-4 py-2 rounded hover:bg-[#3B82F6] transition ${
-      currentPath === path ? 'bg-[#3B82F6] text-white' : 'text-white'
+      isActive(path, exact) ? 'bg-[#3B82F6] text-white' : 'text-white'
     }`;
 
-  // Auto-expand based on current path
+  // Auto expand submenus if current path is inside them
   useEffect(() => {
-    if (currentPath.startsWith('/dashboard/categories'))
-      setIsCategoryOpen(true);
+    if (currentPath.startsWith('/dashboard/category')) setIsCategoryOpen(true);
     if (currentPath.startsWith('/dashboard/products')) setIsProductOpen(true);
   }, [currentPath]);
 
@@ -48,7 +51,7 @@ const Sidebar = () => {
         <nav className="mt-4 space-y-1 px-2 h-screen">
           <Link
             href="/dashboard"
-            className={linkClasses('/dashboard')}
+            className={linkClasses('/dashboard', true)} // exact match
             onClick={() => setIsSidebarOpen(false)}
           >
             Dashboard
@@ -57,7 +60,9 @@ const Sidebar = () => {
           {/* Categories */}
           <div>
             <button
-              className="w-full text-left px-4 py-2 rounded hover:bg-[#3B82F6] transition text-white"
+              className={`w-full text-left px-4 py-2 rounded transition ${
+                isActive('/dashboard/category') ? 'bg-[#3B82F6] text-white mb-1' : 'hover:bg-[#3B82F6] text-white'
+              }` }
               onClick={() => setIsCategoryOpen(!isCategoryOpen)}
             >
               Categories
@@ -66,14 +71,14 @@ const Sidebar = () => {
               <div className="ml-4 space-y-1">
                 <Link
                   href="/dashboard/category/all-category"
-                  className={linkClasses('/dashboard/categories')}
+                  className={linkClasses('/dashboard/category/all-category')}
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   All Categories
                 </Link>
                 <Link
                   href="/dashboard/category/create-category"
-                  className={linkClasses('/dashboard/categories/create')}
+                  className={linkClasses('/dashboard/category/create-category')}
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   Create Category
@@ -85,7 +90,9 @@ const Sidebar = () => {
           {/* Products */}
           <div>
             <button
-              className="w-full text-left px-4 py-2 rounded hover:bg-[#3B82F6] transition text-white"
+              className={`w-full text-left px-4 py-2 rounded transition ${
+                isActive('/dashboard/products') ? 'bg-[#3B82F6] text-white mb-1' : 'hover:bg-[#3B82F6] text-white'
+              }`}
               onClick={() => setIsProductOpen(!isProductOpen)}
             >
               Products
@@ -94,14 +101,14 @@ const Sidebar = () => {
               <div className="ml-4 space-y-1">
                 <Link
                   href="/dashboard/products/all-products"
-                  className={linkClasses('/dashboard/all-products')}
+                  className={linkClasses('/dashboard/products/all-products')}
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   All Products
                 </Link>
                 <Link
                   href="/dashboard/products/create-product"
-                  className={linkClasses('/dashboard/products/create')}
+                  className={linkClasses('/dashboard/products/create-product')}
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   Create Product
