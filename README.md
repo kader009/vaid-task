@@ -18,6 +18,7 @@ A basic eCommerce admin panel built using **Next.js**, **Tailwind CSS**, and **J
 
 - Login and Register using the provided API
 - Auth token is stored in `localStorage` for session management
+- Form validation and error handling
 
 ### 2. Product Category Management (CRUD)
 
