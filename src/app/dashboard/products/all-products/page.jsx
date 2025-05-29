@@ -127,7 +127,7 @@ const ProductList = () => {
         All Product List
       </h1>
 
-      <div className="overflow-x-auto shadow-lg rounded-xl dark:bg-gray-800">
+      <div className="overflow-x-auto shadow-sm rounded dark:bg-gray-800">
         <table className="min-w-full text-sm text-left dark:text-gray-200">
           <thead className="bg-blue-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 capitalize tracking-wider">
             <tr>
