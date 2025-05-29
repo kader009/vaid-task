@@ -52,7 +52,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-indigo-800 px-4 pt-2 pb-4 space-y-2">
+        <div className="md:hidden bg-[#3B82F6] px-4 pt-2 pb-4 space-y-2">
           <Link
             href="/"
             onClick={() => setIsOpen(false)}

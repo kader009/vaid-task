@@ -6,15 +6,21 @@ import Footer from '@/shared/Footer';
 
 const Dashbooardlayout = ({ children }) => {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
+      {/* Navbar */}
       <Navbar />
-      <div className="flex w-full min-h-screen">
+
+      <div className="flex flex-1 w-full">
         <Sidebar />
+
+        <main className="flex-1 w-full">{children}</main>
+
         <Toaster />
-        <main className="flex-1 w-full h-screen">{children}</main>
       </div>
+
+      {/* Footer */}
       <Footer />
-    </>
+    </div>
   );
 };
 
